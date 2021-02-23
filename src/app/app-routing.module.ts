@@ -2,6 +2,8 @@ import { PageNotFoundComponent } from "./shared/components/page-not-found/page-n
 import { NoAccessComponent } from "./shared/components/no-access/no-access.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AuthGuard } from "./shared/guards/auth_gaurd";
+import { ProductModule } from "./views/pages/product/product.module";
 
 const routes: Routes = [
   {
@@ -14,22 +16,14 @@ const routes: Routes = [
       },
       {
         path: "products",
-        loadChildren: () =>
-          import("./views/pages/product/product.module").then(
-            (m) => m.ProductModule
-          ),
+        component: ProductModule,
+        canActivate: [AuthGuard],
       },
       {
         path: "users",
+
         loadChildren: () =>
           import("./views/pages/user/user.module").then((m) => m.UserModule),
-      },
-      {
-        path: "task-board",
-        loadChildren: () =>
-          import("./views/pages/task-board/task-board.module").then(
-            (m) => m.TaskBoardModule
-          ),
       },
     ],
   },

@@ -1,0 +1,7 @@
+<h1>Information Request</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <p><input type="text" placeholder="Name" formControlName="name" /></p>
+  <p><input type="text" placeholder="Email" formControlName="email" /></p>
+  <p><textarea placeholder="Message" formControlName="message"></textarea></p>
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+</form>

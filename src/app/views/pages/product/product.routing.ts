@@ -5,10 +5,12 @@ import { ProductListComponent } from "./product-list/product-list.component";
 import { Routes } from "@angular/router";
 
 import { ProductDetailComponent } from "./product-detail/product-detail.component";
+import { AuthGuard } from "src/app/shared/guards/auth_gaurd";
 
 export const ProductRoutes: Routes = [
   {
     path: "products",
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",

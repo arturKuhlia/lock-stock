@@ -36,6 +36,7 @@ export class UserService {
   }
 
   isAdmin(emailId: string) {
+    console.log(emailId);
     return this.db.list("clients", (ref) =>
       ref.orderByChild("email").equalTo(emailId)
     );

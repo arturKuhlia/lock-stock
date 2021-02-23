@@ -6,16 +6,13 @@ declare var $: any;
 @Component({
   selector: "app-root",
   template: `
-    <div class="container">
-      <app-navbar></app-navbar>
+    <app-navbar></app-navbar>
 
-      <main [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
-        <router-outlet #o="outlet"></router-outlet>
-      </main>
-
-      <!-- <app-footer></app-footer> -->
-      <app-loader-spinner></app-loader-spinner>
+    <div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+      <router-outlet #o="outlet"></router-outlet>
     </div>
+
+    <app-loader-spinner></app-loader-spinner>
   `,
   styleUrls: ["./app.component.scss"],
   animations: [fadeAnimation],

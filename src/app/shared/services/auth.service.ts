@@ -21,7 +21,7 @@ export class AuthService {
     .pipe(filter((user) => !!user));
 
   isLoggedIn$: Observable<boolean> = this.user$.pipe(
-    map((user) => !!user.$key)
+    map((user) => !!user.emailId)
   );
 
   isLoggedOut$: Observable<boolean> = this.isLoggedIn$.pipe(
@@ -67,6 +67,7 @@ export class AuthService {
     this.firebaseAuth.signOut().then((res) => {
       this.subject.next(ANONYMOUS_USER);
       this.router.navigate(["/"]);
+      console.log("logged out");
     });
   }
 

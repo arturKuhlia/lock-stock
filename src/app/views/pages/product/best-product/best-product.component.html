@@ -4,7 +4,7 @@
     <div class="col-md-6">
       <blockquote class="blockquote float-left bq-primary">
         <h3 class="bq-title">
-          {{ translate.data["BESTPRODUCTS"] | translate }}
+          BEST PRODUCTS
         </h3>
       </blockquote>
     </div>
@@ -12,7 +12,7 @@
       <a
         class="btn btn-default float-right"
         [routerLink]="['/products/all-products']"
-        >{{ translate.data["VIEWALL"] | translate }}</a
+        >VIEW ALL</a
       >
     </div>
   </div>
@@ -75,7 +75,7 @@
 
             <!--Card footer-->
             <div class="card-footer">
-              <span class="left">₹ {{ product.productPrice }}</span>
+              <span class="left">CAD ${{ product.productPrice }}</span>
               <span class="right">
                 <a
                   placement="top"

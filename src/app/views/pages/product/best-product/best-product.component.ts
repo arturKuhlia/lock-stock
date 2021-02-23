@@ -1,4 +1,3 @@
-import { TranslateService } from "src/app/shared/services/translate.service";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "src/app/shared/models/product";
 import { ProductService } from "src/app/shared/services/product.service";
@@ -16,8 +15,7 @@ export class BestProductComponent implements OnInit {
   loading = false;
   constructor(
     private productService: ProductService,
-    private toasterService: ToastrService,
-    public translate: TranslateService
+    private toasterService: ToastrService
   ) {}
 
   ngOnInit() {

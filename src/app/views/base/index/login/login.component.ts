@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           phoneNumber: res.user.phoneNumber,
           picture: res.user.photoURL,
         };
+        console.log(user);
 
         this.userService.createUser(user);
 
