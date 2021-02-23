@@ -6,6 +6,10 @@
   background: var(--navBackground);
 }
 
+.nav-link {
+  color: black !important;
+}
+
 .color-container {
   position: relative;
   cursor: pointer;
@@ -14,6 +18,7 @@
   margin: auto;
   border-radius: 50%;
   overflow: hidden;
+  color: black;
 
   .colorDiv {
     position: absolute;
@@ -23,19 +28,6 @@
     height: 100%;
     box-sizing: border-box;
     border-radius: 50%;
-  }
-
-  .color-purple {
-    background: azure;
-  }
-  .color-red {
-    background: #e91e63;
-  }
-  .color-blue {
-    background: #3f51b5;
-  }
-  .color-violet {
-    background: #673ab7;
   }
 }
 
