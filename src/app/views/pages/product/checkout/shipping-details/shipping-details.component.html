@@ -1,19 +1,14 @@
 <div class="container mt-3">
   <div class="col-md order-md-1">
     <h4 class="mb-3">Shipping Address</h4>
-    <form
-      class="needs-validation"
-      #userDetailsForm="ngForm"
-      (ngSubmit)="updateUserDetails(userDetailsForm)"
-    >
+    <form name="contact" netlify>
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="firstName">First name</label>
+          <label for="firstName">First name </label>
           <input
             type="text"
             class="form-control"
             id="firstName"
-            [(ngModel)]="userDetail.firstName"
             name="firstName"
             required
           />
@@ -27,7 +22,6 @@
             type="text"
             class="form-control"
             id="lastName"
-            [(ngModel)]="userDetail.lastName"
             name="lastName"
             required
           />
@@ -46,9 +40,8 @@
           type="email"
           class="form-control"
           id="email"
-          [(ngModel)]="userDetails.emailId"
           name="email"
-          [disabled]="true"
+          required
         />
         <div class="invalid-feedback">
           Please enter a valid email address for shipping updates.
@@ -62,7 +55,6 @@
           class="form-control"
           id="address"
           placeholder="1234 Main St"
-          [(ngModel)]="userDetail.address1"
           name="address1"
           required
         />
@@ -81,7 +73,6 @@
           class="form-control"
           id="address2"
           placeholder="Apartment or suite"
-          [(ngModel)]="userDetail.address2"
           name="address2"
         />
       </div>
@@ -93,27 +84,25 @@
             class="custom-select d-block w-100"
             id="country"
             required
-            [(ngModel)]="userDetail.country"
             name="country"
           >
             <option value="">Choose...</option>
-            <option>United States</option>
+            <option>Canada</option>
           </select>
           <div class="invalid-feedback">
             Please select a valid country.
           </div>
         </div>
         <div class="col-md-4 mb-3">
-          <label for="state">State</label>
+          <label for="state">Province</label>
           <select
             class="custom-select d-block w-100"
             id="state"
-            [(ngModel)]="userDetail.state"
             name="state"
             required
           >
             <option value="">Choose...</option>
-            <option>California</option>
+            <option>Ontario</option>
           </select>
           <div class="invalid-feedback">
             Please provide a valid state.
@@ -126,7 +115,6 @@
             class="form-control"
             id="zip"
             placeholder=""
-            [(ngModel)]="userDetail.zip"
             name="zip"
             required
           />

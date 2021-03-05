@@ -17,7 +17,6 @@ const routes: Routes = [
       {
         path: "products",
         component: ProductModule,
-        canActivate: [AuthGuard],
       },
       {
         path: "users",

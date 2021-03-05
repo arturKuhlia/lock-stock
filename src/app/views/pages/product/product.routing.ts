@@ -10,7 +10,7 @@ import { AuthGuard } from "src/app/shared/guards/auth_gaurd";
 export const ProductRoutes: Routes = [
   {
     path: "products",
-    canActivate: [AuthGuard],
+
     children: [
       {
         path: "",
@@ -32,6 +32,8 @@ export const ProductRoutes: Routes = [
         path: "checkouts",
         loadChildren: () =>
           import("./checkout/checkout.module").then((m) => m.CheckoutModule),
+
+        canActivate: [AuthGuard],
       },
       {
         path: "product/:id",
