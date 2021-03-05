@@ -5,6 +5,7 @@ import { ShippingDetailsComponent } from "./shipping-details/shipping-details.co
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CheckoutComponent } from "./checkout.component";
+import { FormSuccessComponent } from "./form-success/form-success.component";
 
 @NgModule({
   imports: [CommonModule, SharedModule, CheckoutRoutingModule],
@@ -12,6 +13,7 @@ import { CheckoutComponent } from "./checkout.component";
     CheckoutComponent,
     ShippingDetailsComponent,
     ProductsComponent,
+    FormSuccessComponent,
   ],
   exports: [CheckoutComponent],
 })
