@@ -1,22 +1,52 @@
-<h2>We can't wait to hear from you!</h2>
+<div class="wrapper-box">
+  <div class="container">
+    <h2 class="text-center mb-5">Angular Contact Form Hosted On FireBase</h2>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <form [formGroup]="FormData" (ngSubmit)="onSubmit(FormData.value)">
+          <div class="form-group">
+            <label for="Email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="Email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              formControlName="Email"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >We'll never share your email with anyone else.</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Fullname"
+              placeholder="Full Name"
+              formControlName="Fullname"
+            />
+          </div>
 
-<div class="form-box">
-  <form
-    name="contact-form"
-    class="contact-form"
-    method="POST"
-    data-netlify="true"
-    action="/form-success"
-  ></form>
-  <input type="hidden" name="form-name" value="contact-form" />
-  <label> Name: </label>
-  <input type="text" name="name" class="input" />
-  <label> E-mail: </label>
-  <input type="email" name="email" class="input" required />
-  <label> Earliest Start Date: </label>
-  <input type="date" name="start-date" class="start" />
-
-  <label> Additional Message: </label>
-  <textarea name="message" class="textarea" placeholder="message"> </textarea>
-  <button type="submit">Submit</button>
+          <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea
+              class="form-control"
+              formControlName="Comment"
+              name="Comment"
+            >
+            </textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!FormData.valid"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,9 +6,16 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CheckoutComponent } from "./checkout.component";
 import { FormSuccessComponent } from "./form-success/form-success.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, CheckoutRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CheckoutRoutingModule,
+  ],
   declarations: [
     CheckoutComponent,
     ShippingDetailsComponent,
