@@ -10,37 +10,17 @@ const shortId = require("shortid");
 const moment = require("moment");
 
 @Component({
-  selector: "app-add-product",
-  templateUrl: "./add-product.component.html",
-  styleUrls: ["./add-product.component.scss"],
+  selector: "app-edit-product",
+  templateUrl: "./edit-product.component.html",
+  styleUrls: ["./edit-product.component.scss"],
 })
-export class AddProductComponent implements OnInit {
+export class EditProductComponent implements OnInit {
   product: Product = new Product();
-  imageSrc = new Array<any>();
-  brands = ["All", "Door Locks", "Padlocks", "Hinges", "Door Ornaments"];
   constructor(private productService: ProductService) {}
 
   ngOnInit() {}
 
-  handleInputChange(e) {
-    var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-    var pattern = /image-*/;
-    var reader = new FileReader();
-    if (!file.type.match(pattern)) {
-      alert("invalid format");
-      return;
-    }
-    reader.onload = this._handleReaderLoaded.bind(this);
-    reader.readAsDataURL(file);
-  }
-  _handleReaderLoaded(e) {
-    let reader = e.target;
-    this.imageSrc.push(reader.result);
-  }
-
   createProduct(productForm: NgForm) {
-    productForm.value.productImageUrl = this.imageSrc;
-
     const payload: Product = {
       ...productForm.value,
       productId: "PROD_" + shortId.generate(),

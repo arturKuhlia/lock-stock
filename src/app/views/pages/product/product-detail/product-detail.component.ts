@@ -11,7 +11,8 @@ import { ToastrService } from "src/app/shared/services/toastr.service";
 export class ProductDetailComponent implements OnInit, OnDestroy {
   private sub: any;
   product: Product;
-
+  qt: number = 1;
+  prodImages: any;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -33,6 +34,10 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       (product) => {
         const y = { ...(product.payload.toJSON() as Product), $key: id };
         this.product = y;
+
+        this.prodImages = Object.keys(
+          this.product.productImageUrl
+        ).map((key) => [this.product.productImageUrl[key]]);
       },
       (error) => {
         this.toastrService.error("Error while fetching Product Detail", error);
@@ -40,8 +45,15 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     );
   }
 
-  addToCart(product: Product) {
-    this.productService.addToCart(product);
+  addToCart(product: Product, qt: number) {
+    this.productService.addToCart(product, qt);
+  }
+
+  addQt() {
+    this.qt += 1;
+  }
+  removeQt() {
+    this.qt -= 1;
   }
 
   ngOnDestroy() {

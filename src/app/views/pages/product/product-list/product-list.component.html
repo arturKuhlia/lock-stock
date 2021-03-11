@@ -11,17 +11,13 @@
         >
           Add Product
         </button>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-group">
-        <label for="brand_select">Category:</label>
+
         <select
           class="form-control"
           name=""
           id="brand_select"
+          placeholder="Chose Category"
+          value=""
           [(ngModel)]="selectedBrand"
         >
           <option *ngFor="let brand of brands" [ngValue]="brand">{{
@@ -30,6 +26,8 @@
         </select>
       </div>
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-9">
       <div class="container">
         <app-card-loader
@@ -55,11 +53,11 @@
                   <a [routerLink]="['/products/product', product.$key]">
                     <div class="view overlay hm-white-slight">
                       <img
-                        [src]="product.productImageUrl"
+                        [src]="product.productImageUrl[0]"
                         class="img-fluid"
                         alt=""
-                        width="360px"
-                        height="640px"
+                        width="460px"
+                        height="400px"
                       />
                       <a>
                         <div

@@ -6,9 +6,11 @@ export class Product {
   productPrice: number;
   productDescription: string;
   productImageUrl: string;
+
   productAdded: number;
   productQuatity: number;
   ratings: number;
   favourite: boolean;
   productSeller: string;
+  cartqt?: number;
 }

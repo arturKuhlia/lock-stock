@@ -45,20 +45,16 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="productCategory">Product Category</label>
-
-              <select
+              <input
+                type="dropdown"
                 class="form-control"
                 id="productCategory"
                 name="productCategory"
                 [(ngModel)]="product.productCategory"
                 placeholder="Product Category"
+                value=""
                 required
-              >
-                <option *ngFor="let brand of brands" [ngValue]="brand">{{
-                  brand
-                }}</option>
-              </select>
-
+              />
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -127,8 +123,7 @@
               required
             />
           </div>
-
-          <!-- <div class="mb-3">
+          <div class="mb-3">
             <label for="productImageUrl">Product Image</label>
             <input
               type="text"
@@ -139,25 +134,12 @@
               placeholder="Image Url"
               required
             />
-          </div> -->
+          </div>
 
           <hr class="mb-4" />
 
-          <div class="image-upload">
-            <div *ngFor="let im of imageSrc">
-              <img [src]="im" style="max-width: 300px; max-height: 300px;" />
-            </div>
-
-            <input
-              name="imageUrl"
-              type="file"
-              accept="image/*"
-              (change)="handleInputChange($event)"
-            />
-          </div>
-
           <button class="btn btn-primary btn-lg btn-block" type="submit">
-            Add Product
+            Update Product
           </button>
         </form>
       </div>

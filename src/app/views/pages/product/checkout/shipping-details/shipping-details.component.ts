@@ -24,9 +24,9 @@ import { FormSubmitServiceService } from "src/app/shared/services/form-submit-se
   styleUrls: ["./shipping-details.component.scss"],
 })
 export class ShippingDetailsComponent implements OnInit {
-  userDetails: User;
+  userDetails: any;
 
-  userDetail: UserDetail;
+  userDetail: any;
 
   products: Product[];
 
@@ -47,14 +47,11 @@ export class ShippingDetailsComponent implements OnInit {
     authService.user$.pipe(
       map((user) => {
         this.userDetails = user;
-
-        console.log(user);
       })
     );
   }
 
   ngOnInit() {
-    console.log(this.userDetail, this.userDetails);
     this.FormData = this.builder.group({
       Fullname: new FormControl("", [Validators.required]),
       Email: new FormControl("", [
@@ -76,8 +73,7 @@ export class ShippingDetailsComponent implements OnInit {
     });
     const data = {
       ...FormData.value,
-      emailId: this.userDetails.emailId,
-      userId: this.userDetails.$key,
+
       products,
       totalPrice,
       shippingDate: Date.now(),

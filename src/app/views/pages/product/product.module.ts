@@ -17,9 +17,12 @@ import { SharedModule } from "../../../shared/shared.module";
 import { FavouriteProductsComponent } from "./favourite-products/favourite-products.component";
 import { CartProductsComponent } from "./cart-products/cart-products.component";
 import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.component";
+import { EditProductComponent } from "./edit-product/edit-product.component";
+import { IvyCarouselModule } from "angular-responsive-carousel";
 
 @NgModule({
   imports: [
+    IvyCarouselModule,
     CommonModule,
     RouterModule.forChild(ProductRoutes),
     SharedModule,
@@ -33,6 +36,7 @@ import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.compo
     FavouriteProductsComponent,
     CartProductsComponent,
     CartCalculatorComponent,
+    EditProductComponent,
   ],
   exports: [],
 })

@@ -1,16 +1,27 @@
 <br />
-<div class="container">
+<div class="container" *ngIf="prodImages.length > 0">
+  <carousel
+    [objectFit]="'contain'"
+    [cellWidth]="'100%'"
+    [arrowsOutside]="true"
+    [autoplay]="true"
+    [dots]="true"
+    [loop]="true"
+    class="product-img"
+  >
+    <div class="carousel-cell product-img" *ngFor="let im of prodImages">
+      <img
+        [src]="im"
+        [alt]="product.productName"
+        width="100%"
+        height="100%"
+        class="img-fluid"
+      />
+    </div>
+  </carousel>
   <div class="row">
     <div class="col-sm-4">
       <div class="product-image">
-        <div class="view hm-zoom z-depth-2" style="cursor: pointer;">
-          <img
-            [src]="product.productImageUrl"
-            [alt]="product.productName"
-            width="100%"
-            class="img-fluid rounded"
-          />
-        </div>
         <div class="" style="margin-top: 15px;">
           <ul class="list-group mb-3">
             <li
@@ -34,7 +45,16 @@
               }}</span>
             </li>
           </ul>
-          <button class="btn btn-primary" (click)="addToCart(product)">
+
+          <p>
+            Quantity:
+            <span>
+              <button (click)="removeQt()">-</button> {{ qt
+              }}<button (click)="addQt()">+</button></span
+            >
+          </p>
+
+          <button class="btn btn-primary" (click)="addToCart(product, qt)">
             Add to Cart
           </button>
         </div>
