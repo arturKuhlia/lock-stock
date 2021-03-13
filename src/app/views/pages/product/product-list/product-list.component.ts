@@ -52,6 +52,16 @@ export class ProductListComponent implements OnInit {
     this.productService.addFavouriteProduct(product);
   }
 
+  changeAvailability(prod: Product) {
+    prod.productAvailable
+      ? (prod.productAvailable = false)
+      : (prod.productAvailable = true);
+
+    console.log(prod, prod.productAvailable);
+
+    this.productService.updateProduct(prod);
+  }
+
   addToCart(product: Product) {
     this.productService.addToCart(product);
   }

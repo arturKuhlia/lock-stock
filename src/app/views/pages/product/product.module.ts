@@ -19,9 +19,11 @@ import { CartProductsComponent } from "./cart-products/cart-products.component";
 import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.component";
 import { EditProductComponent } from "./edit-product/edit-product.component";
 import { IvyCarouselModule } from "angular-responsive-carousel";
+import { MaterialModule } from "src/app/angular-material.module";
 
 @NgModule({
   imports: [
+    MaterialModule,
     IvyCarouselModule,
     CommonModule,
     RouterModule.forChild(ProductRoutes),

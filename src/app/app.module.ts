@@ -14,12 +14,14 @@ import { UserModule } from "./views/pages/user/user.module";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { ContactComponent } from "./views/contact/contact.component";
+import { MaterialModule } from "./angular-material.module";
 
 /* to load and set en.json as the default application language */
 
 @NgModule({
   declarations: [AppComponent, ContactComponent],
   imports: [
+    MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

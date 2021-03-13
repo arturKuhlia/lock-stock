@@ -39,7 +39,9 @@ export class ProductService {
   }
 
   updateProduct(data: Product) {
-    this.products.update(data.$key, data);
+    const $key = data.$key;
+    delete data.$key;
+    this.products.update($key, data);
   }
 
   deleteProduct(key: string) {

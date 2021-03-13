@@ -23,7 +23,7 @@ export const checkoutRoutes: Routes = [
         outlet: "checkOutlet",
       },
       {
-        path: "form-success",
+        path: "success",
         component: FormSuccessComponent,
         outlet: "checkOutlet",
       },

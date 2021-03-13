@@ -1,5 +1,144 @@
+<div class="container">
+  <label for="brand_select">Select Category</label>
+  <select
+    class="form-control"
+    required
+    id="brand_select"
+    placeholder="Chose Category"
+    [(ngModel)]="selectedBrand"
+  >
+    <option *ngFor="let brand of brands" [ngValue]="brand">{{ brand }}</option>
+  </select>
+  <br />
+  <br />
+  <div *ngIf="authService.isAdmin$ | async">
+    <div class="float-right">
+      <button
+        type="button"
+        class="btn btn-primary waves-light"
+        data-toggle="modal"
+        data-target="#exampleModalLong"
+      >
+        Add Product
+      </button>
+    </div>
+  </div>
+
+  <app-card-loader [loop]="3" [height]="800" *ngIf="loading"></app-card-loader>
+  <div *ngIf="!loading">
+    <div
+      *ngFor="
+        let product of productList
+          | filterByBrand: selectedBrand
+          | paginate: { itemsPerPage: 6, currentPage: page }
+      "
+    >
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <a
+              [routerLink]="['/products/product', product.$key]"
+              routerLinkActive="router-link-active"
+              >{{ product.productName }}
+            </a>
+          </mat-card-title>
+          <mat-card-subtitle>{{ product.productCategory }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <a [routerLink]="['/products/product', product.$key]">
+          <img
+            [src]="product.productImageUrl[0]"
+            class="img-fluid"
+            alt=""
+            width="460px"
+            height="400px"
+          />
+          <a>
+            <div class="mask waves-effect waves-light" mdbRippleRadius></div>
+          </a>
+          <mat-card-content>
+            <p>
+              {{ product.productDescription }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            CAD ${{ product.productPrice }}
+
+            <a
+              placement="top"
+              mdbTooltip="Add to Wishlist"
+              container="body"
+              (click)="addFavourite(product)"
+            >
+              <i class="fa fa-heart"></i>
+            </a>
+            <a
+              placement="top"
+              mdbTooltip="Available"
+              container="body"
+              *ngIf="authService.isAdmin$ | async"
+              (click)="changeAvailability(product)"
+            >
+              <i class="fa fa-check"></i>
+            </a>
+            <a
+              placement="top"
+              mdbTooltip="Add to Cart"
+              container="body"
+              (click)="addToCart(product)"
+            >
+              <i class="fa fa-shopping-cart"></i>
+            </a>
+            <a
+              placement="top"
+              mdbTooltip="Remove Product"
+              container="body"
+              *ngIf="authService.isAdmin$ | async"
+              (click)="removeProduct(product.$key)"
+            >
+              <i class="fa fa-trash"></i>
+            </a>
+          </mat-card-actions>
+        </a>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- Pagination -->
+<div class="text-center mt-3">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
+
+<!--/.Card-->
+
+<app-add-product></app-add-product>
+<app-edit-product></app-edit-product>
+
+<!-- 
+
+
+
+
+
+
 <br />
 <div class="container">
+<label for="brand_select">Select Category</label>
+  <select
+  class="form-control"
+  required
+  id="brand_select"
+  placeholder="Chose Category"
+ 
+  [(ngModel)]="selectedBrand"
+>
+
+  <option *ngFor="let brand of brands" [ngValue]="brand">{{
+    brand
+  }}</option>
+</select>
+<br>
+<br>
   <div class="row" *ngIf="authService.isAdmin$ | async">
     <div class="col-sm">
       <div class="float-right">
@@ -12,18 +151,6 @@
           Add Product
         </button>
 
-        <select
-          class="form-control"
-          name=""
-          id="brand_select"
-          placeholder="Chose Category"
-          value=""
-          [(ngModel)]="selectedBrand"
-        >
-          <option *ngFor="let brand of brands" [ngValue]="brand">{{
-            brand
-          }}</option>
-        </select>
       </div>
     </div>
   </div>
@@ -36,7 +163,7 @@
           *ngIf="loading"
         ></app-card-loader>
         <div class="row" *ngIf="!loading">
-          <!-- List of Products -->
+        
           <div
             class="col-sm-4 mb-2"
             *ngFor="
@@ -47,9 +174,9 @@
           >
             <div class="item">
               <div class="mb-r">
-                <!--Card-->
+               
                 <div class="card card-cascade wider">
-                  <!--Card image-->
+                 
                   <a [routerLink]="['/products/product', product.$key]">
                     <div class="view overlay hm-white-slight">
                       <img
@@ -67,10 +194,9 @@
                       </a>
                     </div>
                   </a>
-                  <!--/.Card image-->
-                  <!--Card content-->
+                  
                   <div class="card-body text-center no-padding">
-                    <!--Category & Title-->
+                    
                     <a class="text-muted">
                       <h5>{{ product.productCategory }}</h5>
                     </a>
@@ -83,11 +209,13 @@
                         >
                       </strong>
                     </p>
-                    <!--Description-->
+                  
                     <p class="card-text">{{ product.productDescription }}</p>
-                    <!--Card footer-->
+                   
                     <div class="card-footer">
                       <span class="left">CAD ${{ product.productPrice }}</span>
+                      <span *ngIf="product.productAvailable" class="green succeess  "> In Stock </span>
+                      <span *ngIf="!product.productAvailable" class="red danger  "> Out Of Stock </span>
                       <span class="right">
                         <a
                           placement="top"
@@ -97,6 +225,16 @@
                         >
                           <i class="fa fa-heart"></i>
                         </a>
+                        <a
+                        placement="top"
+                        mdbTooltip="Available"
+                        container="body"
+                        *ngIf="authService.isAdmin$ | async"
+                        
+                        (click)="changeAvailability(product)"
+                      >
+                        <i class="fa fa-check"></i>
+                      </a>
                         <a
                           placement="top"
                           mdbTooltip="Add to Cart"
@@ -112,27 +250,31 @@
                           *ngIf="authService.isAdmin$ | async"
                           (click)="removeProduct(product.$key)"
                         >
+
+                
                           <i class="fa fa-trash"></i>
                         </a>
+                         
+                         
                       </span>
                     </div>
                   </div>
-                  <!--/.Card content-->
+                   
                 </div>
-                <!--/.Card-->
+               
               </div>
             </div>
           </div>
         </div>
-        <!-- Pagination -->
-        <div class="text-center mt-3">
+            <div class="text-center mt-3">
           <pagination-controls
             (pageChange)="page = $event"
           ></pagination-controls>
         </div>
       </div>
-      <!--/.Card-->
+     
     </div>
   </div>
 </div>
 <app-add-product></app-add-product>
+<app-edit-product></app-edit-product> -->

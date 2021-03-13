@@ -38,6 +38,7 @@ export class ShippingDetailsComponent implements OnInit {
     authService: AuthService,
     private shippingService: ShippingService,
     productService: ProductService,
+    private prodServe: ProductService,
     private router: Router
   ) {
     /* Hiding products Element */
@@ -81,8 +82,12 @@ export class ShippingDetailsComponent implements OnInit {
 
     this.contact.PostMessage(data).subscribe(
       (response) => {
-        location.href = "https://mailthis.to/confirm";
+        location.href = "checkouts/(checkOutlet:success)";
         console.log(response);
+
+        this.products.forEach((product) => {
+          this.prodServe.removeLocalCartProduct(product);
+        });
       },
       (error) => {
         console.warn(error.responseText);

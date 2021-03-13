@@ -3,7 +3,6 @@
 @import "./assets/theme/colors";
 @import "./assets/theme/functions";
 
-
 router-outlet ~ * {
   position: absolute;
   width: 100%;
@@ -12,4 +11,13 @@ router-outlet ~ * {
 
 * {
   font-family: "Ubuntu", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
