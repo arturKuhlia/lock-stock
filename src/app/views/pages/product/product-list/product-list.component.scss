@@ -4,3 +4,44 @@
 a {
   margin: 3px;
 }
+
+sub {
+  vertical-align: text-top;
+  font-size: 75%;
+}
+sup {
+  vertical-align: text-bottom;
+  font-size: 75%;
+}
+
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 16px;
+}
+mat-card-content {
+  text-overflow: ellipsis;
+}
+img {
+  max-height: 230px;
+  width: auto;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+mat-card-title {
+  margin-top: 15px;
+}
+
+mat-card {
+  height: 420px;
+  margin-bottom: 16px;
+}
+
+.bottom {
+  bottom: 0;
+}

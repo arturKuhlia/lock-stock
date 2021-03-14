@@ -20,6 +20,7 @@ import { CartCalculatorComponent } from "./cart-calculator/cart-calculator.compo
 import { EditProductComponent } from "./edit-product/edit-product.component";
 import { IvyCarouselModule } from "angular-responsive-carousel";
 import { MaterialModule } from "src/app/angular-material.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { MaterialModule } from "src/app/angular-material.module";
     RouterModule.forChild(ProductRoutes),
     SharedModule,
     CheckoutModule,
+    FlexLayoutModule,
   ],
   declarations: [
     ProductComponent,

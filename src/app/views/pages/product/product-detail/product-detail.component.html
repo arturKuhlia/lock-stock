@@ -3,7 +3,7 @@
   <carousel
     [objectFit]="'contain'"
     [cellWidth]="'100%'"
-    [arrowsOutside]="true"
+    [arrowsOutside]="false"
     [autoplay]="true"
     [dots]="true"
     [loop]="true"
@@ -19,75 +19,49 @@
       />
     </div>
   </carousel>
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="product-image">
-        <div class="" style="margin-top: 15px;">
-          <ul class="list-group mb-3">
-            <li
-              class="list-group-item d-flex justify-content-between lh-condensed"
-            >
-              <div>
-                <h6 class="my-0">Product Price</h6>
-              </div>
-              <span class="text-muted" style="color: crimson !important;"
-                >CAD ${{ product.productPrice }}</span
-              >
-            </li>
-            <li
-              class="list-group-item d-flex justify-content-between lh-condensed"
-            >
-              <div>
-                <h6 class="my-0">Product Seller</h6>
-              </div>
-              <span class="text-muted" style="color: crimson !important;">{{
-                product.productSeller
-              }}</span>
-            </li>
-          </ul>
 
-          <p>
-            Quantity:
-            <span>
-              <button (click)="removeQt()">-</button> {{ qt
-              }}<button (click)="addQt()">+</button></span
-            >
-          </p>
+  <br />
 
-          <button class="btn btn-primary" (click)="addToCart(product, qt)">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-8">
-      <div class="product-detail">
-        <h5 class="product-head">Product Details</h5>
-        <table class="table" cellspacing="0" style="max-height: 28px;">
-          <tbody>
-            <tr>
-              <th scope="row">Product Name</th>
-              <td>{{ product.productName }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Product Description</th>
-              <td>{{ product.productDescription }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Product Category</th>
-              <td>{{ product.productCategory }}</td>
-            </tr>
-            <tr>
-              <th scope="row">No. of quantity available</th>
-              <td>{{ product.productQuatity }}</td>
-            </tr>
-            <tr>
-              <th scope="row">Product Added on</th>
-              <td>{{ product.productAdded * 1000 | date }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <h4 class="product-head">
+    {{ product.productName }} <small>- {{ product.productCategory }}</small>
+  </h4>
+
+  <strong> ${{ product.productPrice }} </strong> <small>CAD </small>
+  <mat-chip
+    color="primary"
+    style="display: inline-block;"
+    *ngIf="product.productAvailable"
+    selected
+    >In Stock</mat-chip
+  >
+  <mat-chip
+    color="warn"
+    style="display: inline-block;"
+    *ngIf="!product.productAvailable"
+    selected
+    >Out of Stock
+  </mat-chip>
+
+  <p><strong>Category: </strong> {{ product.productCategory }}</p>
+
+  <p><strong>Available Quantity: </strong> {{ product.productQuatity }}</p>
+
+  <p>
+    Quantity:
+    <span>
+      <button (click)="removeQt()">-</button> {{ qt
+      }}<button (click)="addQt()">+</button></span
+    >
+  </p>
+
+  <button class="btn btn-primary" (click)="addToCart(product, qt)">
+    Add to Cart <i class="fa fa-shopping-cart"></i>
+  </button>
+
+  <p>{{ product.productDescription }}</p>
+
+  <p>
+    <strong> Product Added on</strong>
+    {{ product.productAdded * 1000 | date }}
+  </p>
 </div>
